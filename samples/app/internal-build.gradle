@@ -11,7 +11,7 @@ buildscript {
 
 // Load API Key information in from property file
 Properties props = new Properties()
-File propsFile = file('twitter.properties')
+File propsFile = file('twitter.properties.sample')
 if (propsFile.exists()) {
     props.load(propsFile.newDataInputStream())
 } else if (System.env.TWITTER_KEY != null && System.env.TWITTER_SECRET != null) {

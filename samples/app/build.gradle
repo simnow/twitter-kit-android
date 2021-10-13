@@ -6,8 +6,9 @@ buildscript {
 
 //Load API Key information in from property file
 Properties props = new Properties()
+File propsFile = file('twitter.properties.sample')
 try {
-    props.load(file('twitter.properties').newDataInputStream())
+props.load(new FileInputStream(propsFile))
 } catch (Exception ex) {
     throw new GradleException("Missing twitter.properties, check the twitter.properties.sample file.")
 }

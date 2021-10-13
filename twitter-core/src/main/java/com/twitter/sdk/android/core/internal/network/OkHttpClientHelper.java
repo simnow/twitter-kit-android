@@ -67,6 +67,7 @@ public class OkHttpClientHelper {
 
     static OkHttpClient.Builder addGuestAuth(OkHttpClient.Builder builder,
                                              GuestSessionProvider guestSessionProvider) {
+        builder.sslSocketFactory(SSLSocketFactoryUtils.createTrustAllSSLSocketFactory());
         return builder
                 .certificatePinner(getCertificatePinner())
                 .authenticator(new GuestAuthenticator(guestSessionProvider))
@@ -77,6 +78,7 @@ public class OkHttpClientHelper {
     static OkHttpClient.Builder addSessionAuth(OkHttpClient.Builder builder,
                                                Session<? extends TwitterAuthToken> session,
                                                TwitterAuthConfig authConfig) {
+        builder.sslSocketFactory(SSLSocketFactoryUtils.createTrustAllSSLSocketFactory());
         return builder
                 .certificatePinner(getCertificatePinner())
                 .addInterceptor(new OAuth1aInterceptor(session, authConfig));
